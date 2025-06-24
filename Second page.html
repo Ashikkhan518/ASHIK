@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garena Style Offers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a; /* Dark background similar to gaming sites */
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('https://web.garena.com/images/home_bg.jpg'); /* Garena like background */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .header {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent dark header */
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #ff5722; /* Garena orange */
+            font-size: 2.8em;
+            margin: 0;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .offers-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid for offers */
+            gap: 30px;
+            padding: 30px;
+            max-width: 1200px;
+            width: 95%;
+            background-color: rgba(25, 25, 25, 0.8); /* Slightly transparent darker background for content */
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 50px;
+        }
+
+        .offer-card {
+            background-color: #2a2a2a; /* Darker card background */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #3a3a3a;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6), 0 0 15px #ff5722; /* Highlight on hover */
+        }
+
+        .offer-image {
+            width: 100%;
+            height: 200px; /* Fixed height for offer images */
+            object-fit: cover; /* Ensures image covers the area */
+            border-bottom: 1px solid #444;
+        }
+
+        .offer-content {
+            padding: 20px;
+            flex-grow: 1; /* Allows content to take available space */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .offer-content h2 {
+            color: #ffaa00; /* Gold-like color for offer titles */
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .offer-content p {
+            font-size: 1.0em;
+            color: #c0c0c0;
+            line-height: 1.5;
+            margin-bottom: 15px; /* Adjust margin for options */
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); /* Small options grid */
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-items: center; /* Center items in the grid */
+        }
+
+        .option-item {
+            text-align: center;
+            font-size: 0.8em;
+            color: #aaa;
+        }
+
+        .option-item img {
+            width: 40px; /* Small icon size */
+            height: 40px;
+            border-radius: 5px;
+            object-fit: cover;
+            margin-bottom: 5px;
+            border: 1px solid #444;
+        }
+
+        .game-name {
+            font-size: 0.9em;
+            color: #888;
+            text-align: center;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #333;
+        }
+
+        .offer-button {
+            display: inline-block;
+            background-color: #ff5722;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(255, 87, 34, 0.4);
+            border: none;
+            cursor: pointer;
+            width: fit-content; /* Adjust button width to content */
+            align-self: center; /* Center the button */
+        }
+
+        .offer-button:hover {
+            background-color: #e64a19;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2em;
+            }
+            .offers-container {
+                grid-template-columns: 1fr; /* Single column on smaller screens */
+                padding: 20px;
+            }
+            .offer-card {
+                max-width: 350px; /* Max width for cards on mobile */
+                margin: 0 auto; /* Center cards */
+            }
+            .offer-content h2 {
+                font-size: 1.5em;
+            }
+            .offer-image {
+                height: 180px; /* Slightly smaller image height on mobile */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            .offers-container {
+                padding: 15px;
+            }
+            .offer-card {
+                padding-bottom: 15px; /* More padding at bottom on small screens */
+            }
+            .offer-content {
+                padding: 15px;
+            }
+            .offer-button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+            .option-item img {
+                width: 35px;
+                height: 35px;
+            }
+            .option-item {
+                font-size: 0.75em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>আমাদের সেরা অফারগুলো</h1>
+    </div>
+
+    <div class="offers-container">
+        <div class="offer-card">
+            <img src="https://via.placeholder.com/400x200/FF0000/FFFFFF?text=Mega+Diamond+Pack" alt="Mega Diamond Pack" class="offer-image">
+            <div class="offer-content">
+                <h2>মেগা ডায়মন্ড প্যাক!</h2>
+                <p>বিশেষ ছাড়ে কিনুন আপনার পছন্দের ডায়মন্ড প্যাক এবং উপভোগ করুন অতিরিক্ত বোনাস!</p>
+                
+                <div class="options-grid">
+                    <div class="option-item">
+                        <img src="https://via.placeholder.com/40x40/007bff/FFFFFF?text=DM" alt="Diamond">
+                        <small>Diamond</small>
+                    </div>
+                    <div class="option-item">
+                        <img src="https://via.placeholder.com/40x40/28a745/FFFFFF?text=Bonus" alt="Bonus">
+                        <small>Bonus</small>
+                    </div>
+                    <div class="option-item">
+                        <img src="https://via.placeholder.com/40x40/dc3545/FFFFFF?text=Save" alt="Save">
+                        <small>Save</small>
+                    </div>
+                    <div class="option-item">
+                        <img src="https://via.placeholder.com/40x40/ffc107/FFFFFF?text=New" alt="New">
+                        <small>New</small>
+                    </div>
+                </div>
+                <a href="https://discord.gg/3cSHbPCT" class="offer-button">অফার নিন</a>
+                <div class="game-name">ফ্রি ফায়ার</div>
+            </div>
+        </div>
+
+        <div class="offer-card">
+            <img src="https://via.placeholder.com/400x200/007bff/FFFFFF?text=Limited+Time+Offer" alt="Limited Time Discount" class="offer-image">
+            <div class="offer-content">
+                <h2>সীমিত সময়ের জন্য ডিসকাউন্ট</h2>
+                <p>শুধুমাত্র এই সপ্তাহে আপনার সকল টপ-আপে পান ২০% পর্যন্ত ক্যাশব্যাক! দ্রুত করুন!</p>
+                
+                <div class="options-grid">
+                    <div class="option-item">
+                        <img src="https://via.placeholder.com/40x40/6c757d/FFFFFF?text=UC" alt="UC">
+                        <small>UC</small>
+                    </div>
+                    <div class="option-item">
+                        <img src="https://via.placeholder.com/40x40/17a2b8/FFFFFF?text=Cash" alt="Cashback">
+                        <small>Cashback</small>
+                    </div>
+                    <div class="option-item">
+                        <img src="https://via.placeholder.com/40x40/fd7e14/FFFFFF?text=Fast" alt="Fast">
+                        <small>Fast</small>
+                    </div>
+                </div>
+                <a href="https://discord.gg/3cSHbPCT" class="offer-button">বিস্তারিত দেখুন</a>
+                <div class="game-name">পাবজি মোবাইল</div>
+            </div>
+        </div>
+
+        <div class="offer-card">
+            <img src="https://via.placeholder.com/400x200/6f42c1/FFFFFF?text=New+Player+Bonus" alt="New Account Special" class="offer-image">
+            <div class="offer-content">
+                <h2>নতুন আইডি স্পেশাল</h2>
+                <p>নতুন অ্যাকাউন্টে প্রথম টপ-আপে পান ডাবল বোনাস! এখনই শুরু করুন আপনার গেমিং যাত্রা।</p>
+                
+                <div class="options-grid">
+                    <div class="option-item">
+                        <img src="https://via.placeholder.com/40x40/e83e8c/FFFFFF?text=DM" alt="Diamond">
+                        <small>Diamond</small>
+                    </div>
+                    <div class="option-item">
+                        <img src="https://via.placeholder.com/40x40/6610f2/FFFFFF?text=Bonus" alt="Bonus">
+                        <small>Bonus</small>
+                    </div>
+                </div>
+                <a href="https://discord.gg/3cSHbPCT" class="offer-button">রেজিস্টার করুন</a>
+                <div class="game-name">মোবাইল লেজেন্ডস</div>
+            </div>
+        </div>
+
+        <div class="offer-card">
+            <img src="https://via.placeholder.com/400x200/343a40/FFFFFF?text=Weekend+Offer" alt="Weekend Special" class="offer-image">
+            <div class="offer-content">
+                <h2>উইকেন্ড স্পেশাল</h2>
+                <p>শুধুমাত্র শুক্র, শনি ও রবিবারে যেকোনো CP (COD Points) প্যাক কিনুন এবং পান অতিরিক্ত ৫০% বোনাস!</p>
+                
+                <div class="options-grid">
+                    <div class="option-item">
+                        <img src="https://via.placeholder.com/40x40/000000/FFFFFF?text=CP" alt="CP">
+                        <small>CP</small>
+                    </div>
+                    <div class="option-item">
+                        <img src="https://via.placeholder.com/40x40/ffc107/FFFFFF?text=Bonus" alt="Bonus">
+                        <small>Bonus</small>
+                    </div>
+                    <div class="option-item">
+                        <img src="https://via.placeholder.com/40x40/20c997/FFFFFF?text=Weekly" alt="Weekly">
+                        <small>Weekly</small>
+                    </div>
+                </div>
+                <a href="https://discord.gg/3cSHbPCT" class="offer-button">এখনই কিনুন</a>
+                <div class="game-name">কল অফ ডিউটি মোবাইল</div>
+            </div>
+        </div>
+
+        " class="offer-button">এখানে ক্লিক করুন</a>
+                <div class="game-name">গেমের নাম</div>
+            </div>
+        </div>
+        -->
+
+    </div>
+</body>
+</html>
