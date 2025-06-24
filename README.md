@@ -106,7 +106,7 @@
 <body>
     <div class="container">
         <div class="logo">
-            <img src="" alt="Top-Up Site Logo">
+            <img src="f982b22d-4dd1-4db5-a9fc-a1315ec9c827.jpeg" alt="Top-Up Site Logo">
         </div>
         <h1>আপনার পছন্দের গেম টপ-আপ করুন</h1>
         <p>সহজ এবং নিরাপদ উপায়ে আপনার গেমের ক্রেডিট রিচার্জ করুন। সেরা ডিল এবং দ্রুত সার্ভিস!</p>
