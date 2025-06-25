@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ডায়মন্ড প্যাকেজ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fceabb 0%, #f8b500 100%); /* Warm, golden gradient */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+            box-sizing: border-box;
+        }
+
+        .header-title {
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            margin-bottom: 25px;
+            font-size: 2.5em;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* --- Image Slider (Slick Carousel Style) --- */
+        .slider-container {
+            width: 100%;
+            max-width: 600px; /* Max width for the slider */
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .slider {
+            display: flex;
+            width: 300%; /* 3 images, so 300% width */
+            transition: transform 1s ease-in-out; /* Smooth transition for sliding */
+        }
+
+        .slider img {
+            width: calc(100% / 3); /* Each image takes 1/3 of the slider width */
+            height: 250px; /* Fixed height for images */
+            object-fit: cover; /* Ensures images cover the area without distortion */
+            display: block; /* Removes extra space below image */
+        }
+
+        /* --- Diamond Grid --- */
+        .diamond-grid-container {
+            width: 100%;
+            max-width: 800px; /* Max width for the diamond grid */
+            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white background */
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            padding: 25px;
+        }
+
+        .diamond-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Responsive grid columns */
+            gap: 15px; /* Gap between diamond boxes */
+            justify-content: center; /* Center items in the grid */
+        }
+
+        .diamond-box {
+            background: linear-gradient(135deg, #6dd5ed 0%, #2193b0 100%); /* Blue gradient for diamond boxes */
+            border-radius: 10px;
+            padding: 15px 10px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .diamond-box:hover {
+            transform: translateY(-5px) scale(1.03); /* Lift and slightly enlarge on hover */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .diamond-icon {
+            font-size: 2.2em; /* Larger diamond icon */
+            margin-bottom: 5px;
+            line-height: 1; /* Remove extra space for icon */
+            color: #e0f2f7; /* Lighter color for diamond icon */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .diamond-amount {
+            font-size: 1.3em; /* Larger font for diamond amount */
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .slider img {
+                height: 200px; /* Slightly smaller height on medium screens */
+            }
+            .diamond-grid {
+                grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); /* Adjust grid for tablets */
+                gap: 12px;
+            }
+            .diamond-box {
+                font-size: 1em;
+                padding: 12px 8px;
+            }
+            .diamond-icon {
+                font-size: 2em;
+            }
+            .diamond-amount {
+                font-size: 1.2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+            .header-title {
+                font-size: 2em;
+            }
+            .slider img {
+                height: 180px; /* Even smaller height on mobile */
+            }
+            .diamond-grid-container {
+                padding: 15px;
+            }
+            .diamond-grid {
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Adjust grid for mobile */
+                gap: 10px;
+            }
+            .diamond-box {
+                font-size: 0.9em;
+                padding: 10px 5px;
+            }
+            .diamond-icon {
+                font-size: 1.8em;
+            }
+            .diamond-amount {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="header-title">আপনার ডায়মন্ড প্যাকেজ কিনুন</h1>
+
+    <div class="slider-container">
+        <div class="slider" id="imageSlider">
+            <img src="https://via.placeholder.com/600x250/FF5733/FFFFFF?text=Gaming+Banner+1" alt="Gaming Banner 1">
+            <img src="https://via.placeholder.com/600x250/33FF57/FFFFFF?text=Gaming+Banner+2" alt="Gaming Banner 2">
+            <img src="https://via.placeholder.com/600x250/3357FF/FFFFFF?text=Gaming+Banner+3" alt="Gaming Banner 3">
+        </div>
+    </div>
+
+    <div class="diamond-grid-container">
+        <div class="diamond-grid">
+            <div class="diamond-box">
+                <span class="diamond-icon">💎</span>
+                <span class="diamond-amount">25</span>
+            </div>
+            <div class="diamond-box">
+                <span class="diamond-icon">💎</span>
+                <span class="diamond-amount">50</span>
+            </div>
+            <div class="diamond-box">
+                <span class="diamond-icon">💎</span>
+                <span class="diamond-amount">100</span>
+            </div>
+            <div class="diamond-box">
+                <span class="diamond-icon">💎</span>
+                <span class="diamond-amount">210</span>
+            </div>
+            <div class="diamond-box">
+                <span class="diamond-icon">💎</span>
+                <span class="diamond-amount">355</span>
+            </div>
+            <div class="diamond-box">
+                <span class="diamond-icon">💎</span>
+                <span class="diamond-amount">520</span>
+            </div>
+            <div class="diamond-box">
+                <span class="diamond-icon">💎</span>
+                <span class="diamond-amount">750</span>
+            </div>
+            <div class="diamond-box">
+                <span class="diamond-icon">💎</span>
+                <span class="diamond-amount">1000</span>
+            </div>
+            <div class="diamond-box">
+                <span class="diamond-icon">💎</span>
+                <span class="diamond-amount">1250</span>
+            </div>
+            <div class="diamond-box">
+                <span class="diamond-icon">💎</span>
+                <span class="diamond-amount">1500</span>
+            </div>
+            <div class="diamond-box">
+                <span class="diamond-icon">💎</span>
+                <span class="diamond-amount">2000</span>
+            </div>
+            <div class="diamond-box">
+                <span class="diamond-icon">💎</span>
+                <span class="diamond-amount">2500</span>
+            </div>
+            <div class="diamond-box">
+                <span class="diamond-icon">💎</span>
+                <span class="diamond-amount">3000</span>
+            </div>
+            <div class="diamond-box">
+                <span class="diamond-icon">💎</span>
+                <span class="diamond-amount">3500</span>
+            </div>
+            <div class="diamond-box">
+                <span class="diamond-icon">💎</span>
+                <span class="diamond-amount">4000</span>
+            </div>
+            <div class="diamond-box">
+                <span class="diamond-icon">💎</span>
+                <span class="diamond-amount">4500</span>
+            </div>
+            <div class="diamond-box">
+                <span class="diamond-icon">💎</span>
+                <span class="diamond-amount">5000</span>
+            </div>
+            <div class="diamond-box">
+                <span class="diamond-icon">💎</span>
+                <span class="diamond-amount">6000</span>
+            </div>
+            <div class="diamond-box">
+                <span class="diamond-icon">💎</span>
+                <span class="diamond-amount">7500</span>
+            </div>
+            <div class="diamond-box">
+                <span class="diamond-icon">💎</span>
+                <span class="diamond-amount">10000</span>
+            </div>
+            <div class="diamond-box">
+                <span class="diamond-icon">💎</span>
+                <span class="diamond-amount">15000</span>
+            </div>
+            </div>
+    </div>
+
+    <script>
+        const slider = document.getElementById('imageSlider');
+        let currentSlide = 0;
+        const totalSlides = slider.children.length; // Should be 3
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides; // Loop back to 0 after last slide
+            slider.style.transform = `translateX(-${currentSlide * 100 / totalSlides}%)`;
+        }
+
+        // Auto slide every 5 seconds (5000 milliseconds)
+        setInterval(nextSlide, 5000);
+    </script>
+</body>
+  </html>
+  
