@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>রঙিন অর্ডার কনফার্মেশন</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 50%, #FF99AC 100%); /* Brighter, more vibrant background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333;
+            padding: 15px; /* Slightly less padding for body */
+            box-sizing: border-box;
+            overflow: hidden; /* Ensure no scrollbars from background */
+        }
+
+        .ticket-container {
+            background-color: #ffffff; /* Pure white for crisp contrast */
+            border-radius: 15px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25); /* Stronger, more noticeable shadow */
+            width: 100%;
+            max-width: 380px; /* Slightly narrower */
+            height: auto; /* Height adjusts automatically */
+            min-height: 480px; /* Minimum height for consistent look */
+            overflow: hidden;
+            position: relative;
+            padding: 25px; /* Reduced padding for smaller height */
+            text-align: center;
+            border: 2px dashed #ff6f61; /* Vibrant dashed border */
+            animation: fadeInScaleUp 0.6s ease-out forwards; /* Retained animation */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Distribute space vertically */
+        }
+
+        /* Top and Bottom semi-circles for ticket tear-off effect - now matching new body background */
+        .ticket-container::before,
+        .ticket-container::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px; /* Slightly larger circles */
+            height: 25px; /* Slightly larger circles */
+            background-color: #FF9A8B; /* Match body background for tear-off illusion */
+            z-index: 1;
+        }
+
+        .ticket-container::before {
+            top: -12px;
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+        }
+
+        .ticket-container::after {
+            bottom: -12px;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+        }
+
+        .header {
+            margin-bottom: 20px; /* Reduced margin */
+            position: relative;
+        }
+
+        .header h1 {
+            color: #FF5733; /* Bright, energetic red-orange */
+            font-size: 2.3em; /* Slightly larger font */
+            margin-bottom: 8px; /* Reduced margin */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 900; /* Bolder for impact */
+            text-transform: uppercase; /* All caps for boldness */
+        }
+
+        .header h1::before {
+            content: '✨'; /* Sparkle icon for visual pop */
+            font-size: 0.9em;
+            color: #FFD700; /* Gold color for sparkle */
+        }
+         /* You can also use other emojis like '✅' or '🎉' */
+
+        .header p {
+            color: #555; /* Slightly darker grey for better readability */
+            font-size: 1em; /* Slightly smaller font */
+            line-height: 1.5; /* Slightly tighter line height */
+        }
+
+        .order-details {
+            text-align: left;
+            margin: 25px 0; /* Reduced margin */
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            padding: 15px 0; /* Reduced padding */
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0; /* Reduced padding */
+            border-bottom: 1px dashed #d0d0d0; /* Slightly darker dashed line */
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 700;
+            color: #444; /* Darker label for better contrast */
+            flex: 1;
+            font-size: 0.95em; /* Slightly smaller */
+        }
+
+        .detail-value {
+            color: #FF5733; /* Matching header color for key values */
+            font-weight: 700;
+            font-size: 1.1em;
+            flex: 1;
+            text-align: right;
+        }
+
+        .footer {
+            margin-top: 20px; /* Reduced margin */
+            font-size: 0.85em; /* Slightly smaller font */
+            color: #777; /* Standard grey */
+        }
+
+        .footer p {
+            margin: 4px 0; /* Reduced margin */
+        }
+
+        /* Animation for initial load */
+        @keyframes fadeInScaleUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .ticket-container {
+                width: 95%;
+                max-width: none; /* Allow full width on very small screens */
+                padding: 15px;
+                min-height: 450px; /* Adjust min-height for smaller screens */
+            }
+            .header h1 {
+                font-size: 2em;
+            }
+            .header p {
+                font-size: 0.9em;
+            }
+            .detail-label, .detail-value {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ticket-container">
+        <div class="header">
+            <h1>অর্ডার কনফার্মড!</h1>
+            <p>আপনার অর্ডার সফলভাবে সম্পন্ন হয়েছে। নিচে আপনার অর্ডারের বিস্তারিত তথ্য দেওয়া হলো।</p>
+        </div>
+
+        <div class="order-details">
+            <div class="detail-item">
+                <span class="detail-label">ডায়মন্ডের পরিমাণ:</span>
+                <span class="detail-value">৫০০ ডায়মন্ড</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">ইউজার আইডি (UID):</span>
+                <span class="detail-value">১২৩৪৫৬৭৮৯</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">অর্ডার সিরিয়াল নং:</span>
+                <span class="detail-value">#ABC123XYZ789</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">তারিখ:</span>
+                <span class="detail-value">২৬ জুন ২০২৫</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">সময়:</span>
+                <span class="detail-value">সন্ধ্যা ৭:৩০</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>আপনার বিশ্বাস এবং আমাদের সেবার জন্য ধন্যবাদ!</p>
+            <p>আমাদের সাথে যুক্ত থাকুন।</p>
+        </div>
+    </div>
+</body>
+  </html>
+  
