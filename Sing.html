@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অনন্য লগইন / সাইন আপ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles & background for the unique look */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif; /* Modern font for a clean look */
+            background: linear-gradient(135deg, #FF6B6B, #FFD166, #4ECDC4, #1A535C); /* Dynamic, vibrant gradient */
+            background-size: 400% 400%; /* For animating the background */
+            animation: gradientAnimation 15s ease infinite; /* Smooth background animation */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+            overflow: hidden; /* Hide overflow from background animation */
+        }
+
+        /* Keyframe animation for background gradient */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Container for the form - applying glassmorphism */
+        .container {
+            position: relative;
+            width: 400px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.15); /* Semi-transparent white */
+            border-radius: 20px; /* More rounded corners */
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Stronger, diffused shadow */
+            backdrop-filter: blur(10px); /* The magic behind glassmorphism */
+            -webkit-backdrop-filter: blur(10px); /* For Safari compatibility */
+            border: 1px solid rgba(255, 255, 255, 0.18); /* Subtle white border */
+            overflow: hidden; /* Crucial for clipping the sliding forms */
+            transition: all 0.3s ease; /* Smooth transition on hover/focus */
+        }
+
+        /* Optional: Add a subtle animation on container hover */
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.45);
+        }
+
+        /* Inner box for forms and toggles */
+        .form-box {
+            position: relative;
+            width: 100%;
+            height: 380px; /* Adjusted fixed height for consistent layout */
+        }
+
+        /* Toggle button container styling */
+        .button-box {
+            width: 280px; /* Wider button box */
+            margin: 0 auto 40px auto; /* Centered, more space below */
+            position: relative;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background for buttons */
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.2); /* Inner shadow for depth */
+            display: flex; /* Use flexbox for button layout */
+            justify-content: space-around; /* Distribute space evenly */
+            align-items: center;
+            padding: 5px; /* Padding inside the button box */
+        }
+
+        /* Sliding background for active button */
+        #btn {
+            position: absolute;
+            top: 5px; /* Adjusted to fit padding */
+            left: 5px; /* Adjusted to fit padding */
+            width: 140px; /* Half of (280px - 10px padding) */
+            height: calc(100% - 10px); /* Adjusted to fit padding */
+            background: linear-gradient(to right, #6EE7B7, #3B82F6); /* Fresh gradient */
+            border-radius: 25px; /* Slightly less rounded than parent for internal fit */
+            transition: .5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bouncier transition */
+            z-index: 1; /* Ensures it's below text but above button-box background */
+        }
+
+        /* Toggle buttons */
+        .toggle-btn {
+            padding: 10px 0; /* Only vertical padding */
+            width: 50%; /* Each button takes half the width */
+            cursor: pointer;
+            background: transparent;
+            border: 0;
+            outline: none;
+            position: relative;
+            z-index: 2; /* Ensures text is above the sliding background */
+            color: #fff; /* White text for contrast */
+            font-size: 16px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .toggle-btn:hover {
+            color: #e0e0e0; /* Slight color change on hover */
+        }
+
+
+        /* Input group styling for both forms */
+        .input-group {
+            position: absolute; /* Allows forms to overlap and slide */
+            width: calc(100% - 80px); /* Adjusted for container padding */
+            transition: .6s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.6s ease; /* Added opacity transition */
+            left: 40px; /* Aligned with container padding */
+            top: 100px; /* Adjusted vertical position for inputs to fit */
+            display: flex; /* Use flexbox for input fields */
+            flex-direction: column; /* Stack fields vertically */
+            align-items: center; /* Center fields horizontally */
+        }
+
+        /* Input fields */
+        .input-field {
+            width: calc(100% - 20px); /* Adjusted for internal padding */
+            padding: 12px 10px; /* More padding for better feel */
+            margin: 10px 0; /* More vertical space */
+            border: none; /* No default border */
+            border-bottom: 2px solid rgba(255, 255, 255, 0.4); /* Glassy bottom border */
+            background: rgba(255, 255, 255, 0.1); /* Very subtle background for input */
+            outline: none;
+            color: #fff; /* White text for input */
+            font-size: 16px;
+            border-radius: 5px; /* Slightly rounded input fields */
+            transition: border-bottom 0.3s ease, background 0.3s ease;
+        }
+
+        .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.7); /* Lighter placeholder text */
+        }
+
+        .input-field:focus {
+            border-bottom: 2px solid #6EE7B7; /* Highlight on focus */
+            background: rgba(255, 255, 255, 0.2); /* Slightly more opaque on focus */
+        }
+
+        /* Checkbox and associated text */
+        .check-box {
+            margin: 20px 10px 30px 0;
+            accent-color: #6EE7B7; /* Custom color for checkbox */
+        }
+
+        span {
+            color: #e0e0e0; /* Lighter text for span */
+            font-size: 14px;
+            position: relative; /* Changed to relative for better flow with checkbox */
+            top: -2px; /* Slight adjustment */
+            margin-left: 5px; /* Space from checkbox */
+        }
+
+        /* Submit button */
+        .submit-btn {
+            width: 90%; /* Slightly wider button */
+            padding: 12px 30px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto 0 auto; /* More margin top */
+            background: linear-gradient(to right, #6EE7B7, #3B82F6); /* Matches toggle gradient */
+            border: 0;
+            outline: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 1px; /* Spaced out letters */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Subtle shadow for button */
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px); /* Lift on hover */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            opacity: 0.9;
+        }
+
+        /* Positioning for Login and Sign Up forms */
+        #login {
+            left: 40px; /* Initial position for login */
+            opacity: 1; /* Login form visible by default */
+        }
+
+        #signup {
+            left: calc(100% + 40px); /* Starts off-screen to the right */
+            opacity: 0; /* Signup form hidden initially */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-box">
+            <div class="button-box">
+                <div id="btn"></div>
+                <button type="button" class="toggle-btn" onclick="login()">লগইন</button>
+                <button type="button" class="toggle-btn" onclick="signup()">সাইন আপ</button>
+            </div>
+            <form id="login" class="input-group">
+                <input type="text" class="input-field" placeholder="ইউজার আইডি" required>
+                <input type="password" class="input-field" placeholder="পাসওয়ার্ড" required>
+                <input type="checkbox" class="check-box"><span>আমাকে মনে রাখুন</span>
+                <button type="submit" class="submit-btn">লগইন</button>
+            </form>
+            <form id="signup" class="input-group">
+                <input type="text" class="input-field" placeholder="ইউজার আইডি" required>
+                <input type="email" class="input-field" placeholder="ইমেইল আইডি" required>
+                <input type="password" class="input-field" placeholder="পাসওয়ার্ড" required>
+                <input type="checkbox" class="check-box"><span>আমি নিয়ম ও শর্তাবলীতে রাজি</span>
+                <button type="submit" class="submit-btn">সাইন আপ</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var loginForm = document.getElementById("login");
+        var signupForm = document.getElementById("signup");
+        var toggleBtn = document.getElementById("btn");
+
+        function signup(){
+            loginForm.style.left = "-450px"; /* Move login form off-screen left */
+            signupForm.style.left = "40px"; /* Move signup form to visible position */
+            toggleBtn.style.left = "145px"; /* Slide toggle button right */
+            loginForm.style.opacity = "0"; /* Fade out login form */
+            signupForm.style.opacity = "1"; /* Fade in signup form */
+        }
+
+        function login(){
+            loginForm.style.left = "40px"; /* Move login form to visible position */
+            signupForm.style.left = "450px"; /* Move signup form off-screen right */
+            toggleBtn.style.left = "5px"; /* Slide toggle button left */
+            loginForm.style.opacity = "1"; /* Fade in login form */
+            signupForm.style.opacity = "0"; /* Fade out signup form */
+        }
+    </script>
+</body>
+  </html>
+  
