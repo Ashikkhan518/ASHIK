@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⛏️ Minecraft অ্যাকাউন্ট কিনুন | Java & Bedrock Edition 💎</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Basic Reset & Fonts */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #3a404c 0%, #1e212a 100%); /* Darker, stony gradient */
+            color: #ecf0f1; /* Light text color */
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 30px auto;
+            background-color: rgba(30, 30, 30, 0.95); /* Very dark, semi-transparent block-like background */
+            padding: 40px;
+            border-radius: 8px; /* Slightly sharp edges for blocky feel */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            border: 2px solid #5cb85c; /* Minecraft green border */
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMjIyMjIyIi8+PHJlY3Qgd2lkdGg9IjEiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzQwNDA0MCIvPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEiIGZpbGw9IiM0MDQwNDAiLz48L3N2Zz4='); /* Subtle grid pattern */
+            background-size: 20px 20px;
+        }
+        .container::before, .container::after {
+            content: '';
+            position: absolute;
+            background-color: rgba(92, 184, 92, 0.1); /* Green glow effect */
+            filter: blur(20px);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .container::before {
+            top: -50px;
+            left: -50px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+        .container::after {
+            bottom: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #5cb85c; /* Minecraft green */
+            margin-bottom: 40px;
+            font-family: 'Press Start 2P', cursive; /* Minecraft-like pixel font */
+            font-size: 2.5em;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(92, 184, 92, 0.7);
+            line-height: 1.2;
+        }
+        h1 span.edition {
+            display: block;
+            font-family: 'Pixelify Sans', sans-serif; /* A bit smoother pixel-like font */
+            font-size: 0.6em;
+            margin-top: 10px;
+            color: #b0e062; /* Lighter green */
+        }
+        h2 {
+            color: #d4d4d4;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            font-family: 'Pixelify Sans', sans-serif;
+        }
+
+        /* Account Cards */
+        .account-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Larger cards */
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .account-card {
+            background-color: #2a2a2a; /* Dark card background */
+            padding: 30px;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #444; /* Subtle gray border */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIHZpZXdCb3g9IjAgMCAxMCAxMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMjIyMjIyIi8+PHJlY3Qgd2lkdGg9IjEiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzMzMyIvPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEiIGZpbGwtMyIjMzMzIi8+PC9zdmc+'); /* Even subtler grid */
+            background-size: 10px 10px;
+        }
+        .account-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(92, 184, 92, 0.1) 0%, transparent 50%, rgba(92, 184, 92, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .account-card:hover::before {
+            opacity: 1;
+        }
+        .account-card:hover {
+            border-color: #b0e062; /* Lighter green on hover */
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+        }
+        .account-card.selected {
+            border-color: #5cb85c; /* Solid green when selected */
+            background-color: #333333;
+            box-shadow: 0 0 25px rgba(92, 184, 92, 0.8);
+            transform: scale(1.03);
+        }
+        .account-card h3 {
+            margin-top: 0;
+            color: #b0e062; /* Lighter green for titles */
+            font-family: 'Pixelify Sans', sans-serif;
+            font-size: 2em;
+            margin-bottom: 15px;
+            text-shadow: 0 0 5px rgba(176, 224, 98, 0.5);
+        }
+        .account-card p {
+            font-size: 1.1em;
+            color: #e0e0e0;
+            margin-bottom: 10px;
+        }
+        .account-card .price {
+            font-size: 2.5em;
+            color: #ffcc00; /* Gold for price */
+            font-weight: 700;
+            margin-top: 15px;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.7);
+        }
+        .account-card .features li {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 5px;
+            color: #c0c0c0;
+            font-size: 0.95em;
+        }
+        .account-card .features li::before {
+            content: "✔️ "; /* Checkmark */
+            color: #5cb85c;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        /* Action Button */
+        .action-button {
+            background: linear-gradient(to right, #5cb85c 0%, #449d44 100%); /* Minecraft green gradient */
+            color: #1a2a3a; /* Dark text for contrast */
+            padding: 18px 35px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.6em;
+            font-weight: 700;
+            width: 100%;
+            margin-top: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(92, 184, 92, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-family: 'Pixelify Sans', sans-serif;
+        }
+        .action-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(92, 184, 92, 0.6);
+            background: linear-gradient(to right, #449d44 0%, #5cb85c 100%);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 25px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: rgba(236, 240, 241, 0.6);
+            border-radius: 0 0 8px 8px;
+            font-size: 0.85em;
+            border-top: 1px solid rgba(92, 184, 92, 0.2);
+        }
+
+        /* --- Media Queries for Responsiveness --- */
+        @media (max-width: 768px) { /* For tablets and smaller screens */
+            .container {
+                margin: 20px auto;
+                padding: 30px;
+            }
+            h1 {
+                font-size: 2em;
+                margin-bottom: 30px;
+            }
+            h1 span.edition {
+                font-size: 0.5em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            .account-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            .account-card {
+                padding: 25px;
+            }
+            .account-card h3 {
+                font-size: 1.8em;
+            }
+            .account-card .price {
+                font-size: 2.2em;
+            }
+            .action-button {
+                font-size: 1.4em;
+                padding: 15px 30px;
+            }
+        }
+
+        @media (max-width: 480px) { /* For mobile phones */
+            body {
+                padding: 10px;
+            }
+            .container {
+                width: 100%;
+                margin: 10px 0;
+                padding: 20px;
+                border-radius: 6px;
+                border: none;
+                background-image: none; /* Hide grid on very small screens */
+            }
+            .container::before, .container::after {
+                display: none;
+            }
+            h1 {
+                font-size: 1.6em;
+                margin-bottom: 25px;
+            }
+            h1 span.edition {
+                font-size: 0.45em;
+            }
+            h2 {
+                font-size: 1.3em;
+            }
+            .account-grid {
+                grid-template-columns: 1fr; /* Single column layout for cards */
+                gap: 15px;
+            }
+            .account-card {
+                padding: 20px;
+            }
+            .account-card h3 {
+                font-size: 1.6em;
+            }
+            .account-card .price {
+                font-size: 2em;
+            }
+            .action-button {
+                font-size: 1.2em;
+                padding: 12px 25px;
+            }
+            footer {
+                padding: 15px;
+                font-size: 0.75em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            MINECRAFT <br>
+            <span class="edition">Java & Bedrock Account Sell</span>
+        </h1>
+
+        <h2>আপনার পছন্দের অ্যাকাউন্ট নির্বাচন করুন:</h2>
+        <div class="account-grid">
+            <div class="account-card" data-account-type="standard" data-price="1200">
+                <h3>Standard Account</h3>
+                <p class="price">৳ 1200</p>
+                <ul>
+                    <li class="features">Java Edition Access</li>
+                    <li class="features">Bedrock Edition Access</li>
+                    <li class="features">Full Access & Lifetime Warranty</li>
+                    <li class="features">Changeable Email & Password</li>
+                </ul>
+                <p class="details">নতুন করে Minecraft শুরু করার জন্য পারফেক্ট!</p>
+            </div>
+
+            <div class="account-card" data-account-type="premium" data-price="1800">
+                <h3>Premium Account</h3>
+                <p class="price">৳ 1800</p>
+                <ul>
+                    <li class="features">Java Edition Access</li>
+                    <li class="features">Bedrock Edition Access</li>
+                    <li class="features">Full Access & Lifetime Warranty</li>
+                    <li class="features">Changeable Email & Password</li>
+                    <li class="features">Hypixel Level 5+</li>
+                    <li class="features">Pre-loaded Skins</li>
+                </ul>
+                <p class="details">এক্সট্রা ফিচার সহ বেস্ট এক্সপেরিয়েন্স!</p>
+            </div>
+
+            <div class="account-card" data-account-type="ultimate" data-price="2500">
+                <h3>Ultimate Account</h3>
+                <p class="price">৳ 2500</p>
+                <ul>
+                    <li class="features">Java Edition Access</li>
+                    <li class="features">Bedrock Edition Access</li>
+                    <li class="features">Full Access & Lifetime Warranty</li>
+                    <li class="features">Changeable Email & Password</li>
+                    <li class="features">Hypixel Level 10+</li>
+                    <li class="features">Rare Capes/Cosmetics (If available)</li>
+                    <li class="features">Active Guild Access</li>
+                </ul>
+                <p class="details">সেরা প্রো প্লেয়ারদের জন্য!</p>
+            </div>
+        </div>
+
+        <button class="action-button" id="proceed-button">অ্যাকাউন্ট কিনুন</button>
+
+        <footer>
+            <p>&copy; 2025 Minecraft Account Marketplace. আপনার অ্যাডভেঞ্চার শুরু হোক!</p>
+            <p>দ্রষ্টব্য: এটি শুধুমাত্র একটি ডিজাইন ডেমো। প্রকৃত কার্যকারিতার জন্য ব্যাক-এন্ড ডেভেলপমেন্ট, ডেটাবেস এবং পেমেন্ট গেটওয়ে ইন্টিগ্রেশন প্রয়োজন।</p>
+        </footer>
+    </div>
+
+    <script>
+        const accountCards = document.querySelectorAll('.account-card');
+        let selectedAccount = null; // এটি নির্বাচিত অ্যাকাউন্টের বিবরণ সংরক্ষণ করবে
+
+        // প্রতিটি অ্যাকাউন্ট কার্ডে ক্লিক ইভেন্ট লিসেনার যোগ করা
+        accountCards.forEach(card => {
+            card.addEventListener('click', () => {
+                // সমস্ত কার্ড থেকে 'selected' ক্লাস সরিয়ে ফেলা
+                accountCards.forEach(c => c.classList.remove('selected'));
+                // বর্তমান ক্লিক করা কার্ডে 'selected' ক্লাস যোগ করা
+                card.classList.add('selected');
+                // নির্বাচিত অ্যাকাউন্টের প্রকার (type) এবং মূল্য (price) ডেটা অ্যাট্রিবিউট থেকে নেওয়া
+                selectedAccount = {
+                    type: card.dataset.accountType,
+                    price: card.dataset.price
+                };
+                console.log(`Selected Account: ${selectedAccount.type}, Price: ৳ ${selectedAccount.price}`);
+            });
+        });
+
+        // "অ্যাকাউন্ট কিনুন" বাটনে ক্লিক ইভেন্ট লিসেনার যোগ করা
+        document.getElementById('proceed-button').addEventListener('click', () => {
+            // যদি কোনো অ্যাকাউন্ট সিলেক্ট করা না থাকে, তাহলে অ্যালার্ট দেখিয়ে বন্ধ করা
+            if (selectedAccount === null) {
+                alert("অনুগ্রহ করে একটি Minecraft অ্যাকাউন্ট নির্বাচন করুন।");
+                return;
+            }
+
+            // URL প্যারামিটার তৈরি করা
+            const queryParams = new URLSearchParams();
+            queryParams.append('accountType', selectedAccount.type); // অ্যাকাউন্টের ধরন যোগ করা
+            queryParams.append('price', selectedAccount.price);       // মূল্য যোগ করা
+
+            // combined_payment_page.html এ রিডাইরেক্ট করা এবং URL প্যারামিটার সহ
+            // নিশ্চিত করুন 'combined_payment_page.html' ফাইলটি একই ফোল্ডারে আছে।
+            window.location.href = `combined_payment_page.html?${queryParams.toString()}`;
+        });
+    </script>
+</body>
+          </html>
+
