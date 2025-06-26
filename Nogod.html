@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>নগদ পেমেন্ট ভেরিফিকেশন</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Noto+Sans+Bengali:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Roboto', 'Noto Sans Bengali', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7; /* Light grey background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .container {
+            width: 90%;
+            max-width: 450px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* For header image */
+        }
+
+        /* Top Header (Nagad logo) */
+        .nagad-header {
+            background-color: #f5f5f5; /* Lighter background for header */
+            padding: 15px 0;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        .nagad-header img {
+            width: 90px; /* Adjust size as needed */
+        }
+
+        /* Main Content - Transaction ID section */
+        .main-content {
+            background-color: #f5842c; /* Nagad orange color */
+            padding: 30px 25px;
+            color: #fff;
+        }
+        .main-content h2 {
+            text-align: center;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            color: #fff;
+            font-weight: 700;
+        }
+        .transaction-input-group {
+            margin-bottom: 30px;
+        }
+        .transaction-input {
+            width: calc(100% - 30px);
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 1.1em;
+            text-align: center;
+            box-sizing: border-box; /* Include padding in width */
+        }
+        .transaction-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .transaction-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Instructions List */
+        .instructions {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .instructions li {
+            position: relative;
+            margin-bottom: 15px;
+            padding-left: 25px;
+            font-size: 1.05em;
+            line-height: 1.4;
+        }
+        .instructions li::before {
+            content: '•'; /* Bullet point */
+            position: absolute;
+            left: 0;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.2em;
+            top: 0;
+        }
+
+        /* Copy Button */
+        .copy-info {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            padding: 8px 12px;
+            margin-top: 5px;
+            justify-content: space-between;
+        }
+        .copy-info span {
+            font-weight: 700;
+            font-size: 1.1em;
+            color: #fff;
+        }
+        .copy-btn {
+            background-color: #007bff; /* Blue for copy button */
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .copy-btn:hover {
+            background-color: #0056b3;
+        }
+        .copy-btn img {
+            height: 16px;
+            filter: invert(1); /* Make icon white */
+        }
+        .copy-btn.copied {
+            background-color: #28a745; /* Green when copied */
+        }
+
+
+        /* Verify Button */
+        .verify-button-section {
+            padding: 25px;
+            text-align: center;
+            background-color: #fff; /* White background for the button section */
+            border-top: 1px solid #eee;
+        }
+        .verify-button {
+            background-color: #f5842c; /* Nagad orange button */
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.3em;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        .verify-button:hover {
+            background-color: #e06d15;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 480px) {
+            .container {
+                width: 100%;
+                margin: 0;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            .main-content {
+                padding: 25px 20px;
+            }
+            .main-content h2 {
+                font-size: 1.6em;
+                margin-bottom: 20px;
+            }
+            .transaction-input {
+                padding: 12px;
+                font-size: 1em;
+            }
+            .instructions li {
+                font-size: 1em;
+                margin-bottom: 12px;
+            }
+            .copy-info span {
+                font-size: 1em;
+            }
+            .copy-btn {
+                padding: 6px 12px;
+                font-size: 0.85em;
+            }
+            .verify-button-section {
+                padding: 20px;
+            }
+            .verify-button {
+                padding: 12px 25px;
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nagad-header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Nagad_Logo.svg/1200px-Nagad_Logo.svg.png" alt="Nagad Logo">
+        </div>
+
+        <div class="main-content">
+            <h2>ট্রানজেকশন আইডি দিন</h2>
+
+            <div class="transaction-input-group">
+                <input type="text" id="transactionIdInput" class="transaction-input" placeholder="আপনার ট্রানজেকশন আইডি দিন" required>
+            </div>
+
+            <ul class="instructions">
+                <li>*167# ডায়াল করে আপনার Nagad মোবাইল মেনুতে যান অথবা Nagad অ্যাপে যান।</li>
+                <li>"Send Money"-এ ক্লিক করুন।</li>
+                <li>
+                    প্রাপক নম্বর হিসেবে এই নম্বরটি লিখুন:
+                    <div class="copy-info">
+                        <span>018xxxxxxxx</span> <button class="copy-btn" id="copyNumberBtn">
+                            <img src="https://www.svgrepo.com/show/503020/copy.svg" alt="Copy Icon"> Copy
+                        </button>
+                    </div>
+                </li>
+                <li>টাকার পরিমাণ: <span style="font-weight: 700;">৳ 24</span></li>
+                <li>নিশ্চিত করতে এখন আপনার Nagad মোবাইল মেনু পিন লিখুন।</li>
+                <li>সবকিছু ঠিক থাকলে, আপনি Nagad থেকে একটি নিশ্চিতকরণ বার্তা পাবেন।</li>
+                <li style="margin-top: 25px; border-top: 1px dashed rgba(255,255,255,0.3); padding-top: 15px;">
+                    এখন উপরের বক্সে আপনার Transaction ID দিন এবং নিচের VERIFY বাটনে ক্লিক করুন।
+                </li>
+            </ul>
+        </div>
+
+        <div class="verify-button-section">
+            <button class="verify-button" id="verifyBtn">VERIFY</button>
+        </div>
+    </div>
+
+    <script>
+        const copyNumberBtn = document.getElementById('copyNumberBtn');
+        const transactionIdInput = document.getElementById('transactionIdInput');
+        const verifyBtn = document.getElementById('verifyBtn');
+        const nagadNumber = "018xxxxxxxx"; // Replace with the actual Nagad number
+
+        // Function to copy text to clipboard
+        function copyTextToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Success feedback
+                const originalText = copyNumberBtn.innerHTML;
+                copyNumberBtn.innerHTML = '<img src="https://www.svgrepo.com/show/503020/copy.svg" alt="Check Icon"> Copied!';
+                copyNumberBtn.classList.add('copied');
+                setTimeout(() => {
+                    copyNumberBtn.innerHTML = originalText;
+                    copyNumberBtn.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+                alert('কপি করতে ব্যর্থ হয়েছেন। ম্যানুয়ালি কপি করুন।');
+            });
+        }
+
+        // Event listener for copy button
+        copyNumberBtn.addEventListener('click', () => {
+            copyTextToClipboard(nagadNumber);
+        });
+
+        // Event listener for verify button
+        verifyBtn.addEventListener('click', () => {
+            const transactionId = transactionIdInput.value.trim();
+            if (transactionId === "") {
+                alert("অনুগ্রহ করে আপনার ট্রানজেকশন আইডি দিন।");
+            } else {
+                alert(`আপনার দেওয়া ট্রানজেকশন আইডি: ${transactionId}\n\n(এটি একটি ডেমো ভেরিফিকেশন। আসল ভেরিফিকেশন ব্যাক-এন্ডে হবে।)`);
+                // এখানে তুমি তোমার সার্ভার-এ ট্রানজেকশন আইডি পাঠানোর লজিক যুক্ত করবে।
+                // উদাহরণ: fetch('/api/verify_nagad_transaction', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify({ transactionId: transactionId, amount: 24, number: nagadNumber })
+                // }).then(response => response.json())
+                //   .then(data => console.log(data))
+                //   .catch(error => console.error('Error:', error));
+            }
+        });
+    </script>
+</body>
+</html>
