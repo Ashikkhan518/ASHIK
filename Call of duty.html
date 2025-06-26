@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 Call of Duty® | CoD Points টপ-আপ 🎯</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Basic Reset & Fonts */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #111111 0%, #333333 100%); /* Dark, gritty gradient */
+            color: #ecf0f1; /* Light text color */
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Full viewport height */
+        }
+        .container {
+            width: 90%;
+            max-width: 950px;
+            margin: 30px auto;
+            background-color: rgba(0, 0, 0, 0.85); /* Very dark, slightly transparent background */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 15px 40px rgba(0, 255, 0, 0.2); /* Greenish shadow for tech feel */
+            border: 1px solid #00ff00; /* Neon green border */
+            position: relative;
+            z-index: 1;
+            overflow: hidden; /* For pseudo-elements */
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top left, rgba(0, 255, 0, 0.1) 0%, transparent 60%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at bottom right, rgba(0, 255, 0, 0.1) 0%, transparent 60%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00ff00; /* Neon green */
+            margin-bottom: 40px;
+            font-family: 'Oswald', sans-serif; /* Bold, impactful font */
+            font-size: 2.8em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
+        }
+        h2 {
+            color: #bbbbbb;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            font-weight: 700;
+        }
+
+        /* Input Styles */
+        .input-group {
+            margin-bottom: 25px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #aaaaaa;
+            font-size: 1.1em;
+        }
+        .input-group input[type="text"],
+        .input-group select {
+            width: calc(100% - 24px); /* Adjusted for padding */
+            padding: 12px;
+            border: 1px solid #006600; /* Darker green border */
+            border-radius: 5px;
+            background-color: #222222;
+            color: #00ff00; /* Green text in inputs */
+            font-size: 1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .input-group input[type="text"]::placeholder {
+            color: #009900; /* Lighter green placeholder */
+        }
+        .input-group input[type="text"]:focus,
+        .input-group select:focus {
+            border-color: #00ff00;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+            outline: none;
+        }
+
+        /* Options Grid */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .option-card {
+            background-color: #2a2a2a; /* Dark card background */
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #333333; /* Subtle border */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        .option-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px; /* Top border accent */
+            background-color: #00ff00;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        .option-card:hover::before {
+            transform: scaleX(1);
+        }
+        .option-card:hover {
+            border-color: #00ff00;
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 255, 0, 0.3);
+        }
+        .option-card.selected {
+            border-color: #00ff00;
+            background-color: #3a3a3a; /* Slightly lighter when selected */
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.7);
+            transform: scale(1.03);
+        }
+        .option-card h3 {
+            margin-top: 0;
+            color: #00ff00; /* Neon green for titles */
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+        .option-card p {
+            font-size: 1.1em;
+            font-weight: 400;
+            color: #ccc;
+        }
+        .option-card .price {
+            font-size: 2.2em;
+            color: #ffffff; /* White for price */
+            margin-top: 15px;
+            font-weight: 700;
+            text-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+        }
+        .option-card .details {
+            font-size: 0.9em;
+            color: #888888;
+            margin-top: 10px;
+        }
+
+        /* Action Button */
+        .action-button {
+            background: linear-gradient(to right, #00ff00 0%, #00aa00 100%); /* Green gradient */
+            color: #111111; /* Dark text for contrast */
+            padding: 18px 35px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.6em;
+            font-weight: 700;
+            width: 100%;
+            margin-top: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 255, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .action-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 255, 0, 0.5);
+            background: linear-gradient(to right, #00aa00 0%, #00ff00 100%);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 25px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: rgba(236, 240, 241, 0.6);
+            border-radius: 0 0 10px 10px;
+            font-size: 0.85em;
+            border-top: 1px solid rgba(0, 255, 0, 0.2);
+        }
+
+        /* --- Media Queries for Responsiveness --- */
+        @media (max-width: 768px) { /* For tablets and smaller screens */
+            .container {
+                margin: 20px auto;
+                padding: 30px;
+            }
+            h1 {
+                font-size: 2.2em;
+                margin-bottom: 30px;
+            }
+            h2 {
+                font-size: 1.4em;
+            }
+            .input-group input[type="text"],
+            .input-group select {
+                width: calc(100% - 20px);
+            }
+            .options-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 20px;
+            }
+            .option-card {
+                padding: 20px;
+            }
+            .option-card h3 {
+                font-size: 1.6em;
+            }
+            .option-card .price {
+                font-size: 2em;
+            }
+            .action-button {
+                font-size: 1.4em;
+                padding: 15px 30px;
+            }
+        }
+
+        @media (max-width: 480px) { /* For mobile phones */
+            body {
+                padding: 10px;
+            }
+            .container {
+                width: 100%;
+                margin: 10px 0;
+                padding: 20px;
+                border-radius: 8px;
+                border: none; /* Hide border on very small screens for cleaner look */
+            }
+            .container::before, .container::after {
+                display: none; /* Hide glow effects on very small screens */
+            }
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 25px;
+            }
+            h2 {
+                font-size: 1.2em;
+            }
+            .input-group input[type="text"],
+            .input-group select {
+                width: calc(100% - 16px);
+                padding: 10px;
+                font-size: 0.9em;
+            }
+            .options-grid {
+                grid-template-columns: 1fr; /* Single column layout for cards */
+                gap: 15px;
+            }
+            .option-card {
+                padding: 18px;
+            }
+            .option-card h3 {
+                font-size: 1.4em;
+            }
+            .option-card .price {
+                font-size: 1.8em;
+            }
+            .action-button {
+                font-size: 1.2em;
+                padding: 12px 25px;
+            }
+            footer {
+                padding: 15px;
+                font-size: 0.75em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            CALL OF DUTY<br>
+            <span style="font-size: 0.6em; display: block; margin-top: 10px; color: #aaaaaa;">OFFICIAL CoD POINTS TOP-UP</span>
+        </h1>
+
+        <div class="input-group">
+            <label for="player-id">আপনার CoD Player ID:</label>
+            <input type="text" id="player-id" placeholder="এখানে আপনার CoD Player ID লিখুন (উদাহরণ: 1234567890)" required>
+        </div>
+
+        <div class="input-group">
+            <label for="server-region">সার্ভার রিজিওন নির্বাচন করুন:</label>
+            <select id="server-region">
+                <option value="">নির্বাচন করুন</option>
+                <option value="global">গ্লোবাল</option>
+                <option value="garena">গ্যারেনা</option>
+                <option value="asia">এশিয়া</option>
+                <option value="eu">ইউরোপ</option>
+                <option value="na">উত্তর আমেরিকা</option>
+                <option value="other">অন্যান্য</option>
+            </select>
+        </div>
+
+        <h2>আপনার CoD Points প্যাকেজ নির্বাচন করুন:</h2>
+        <div class="options-grid">
+            <div class="option-card" data-type="cod-points" data-value="80" data-price="85">
+                <h3>80 CP</h3>
+                <p class="price">৳ 85</p>
+                <p class="details">বেসিক প্যাকেজ</p>
+            </div>
+            <div class="option-card" data-type="cod-points" data-value="420" data-price="420">
+                <h3>420 CP</h3>
+                <p class="price">৳ 420</p>
+                <p class="details">জনপ্রিয় পছন্দ</p>
+            </div>
+            <div class="option-card" data-type="cod-points" data-value="880" data-price="850">
+                <h3>880 CP</h3>
+                <p class="price">৳ 850</p>
+                <p class="details">বেস্ট ভ্যালু</p>
+            </div>
+            <div class="option-card" data-type="cod-points" data-value="2400" data-price="2000">
+                <h3>2400 CP</h3>
+                <p class="price">৳ 2000</p>
+                <p class="details">ব্যাটল পাসের জন্য</p>
+            </div>
+            <div class="option-card" data-type="cod-points" data-value="5000" data-price="4000">
+                <h3>5000 CP</h3>
+                <p class="price">৳ 4000</p>
+                <p class="details">ক্লান ও ইভেন্টের জন্য</p>
+            </div>
+            <div class="option-card" data-type="cod-points" data-value="10000" data-price="7500">
+                <h3>10000 CP</h3>
+                <p class="price">৳ 7500</p>
+                <p class="details">আলটিমেট প্যাকেজ</p>
+            </div>
+        </div>
+
+        <button class="action-button" id="proceed-button">এখনই CoD Points টপ-আপ করুন!</button>
+
+        <footer>
+            <p>&copy; 2025 Call of Duty® টপ-আপ জোন। মিশন কমপ্লিট!</p>
+            <p>দ্রষ্টব্য: এটি শুধুমাত্র একটি ডিজাইন ডেমো। প্রকৃত কার্যকারিতার জন্য ব্যাক-এন্ড ডেভেলপমেন্ট ও পেমেন্ট গেটওয়ে ইন্টিগ্রেশন প্রয়োজন।</p>
+        </footer>
+    </div>
+
+    <script>
+        const optionCards = document.querySelectorAll('.option-card');
+        let selectedOption = null;
+
+        optionCards.forEach(card => {
+            card.addEventListener('click', () => {
+                optionCards.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                selectedOption = {
+                    type: card.dataset.type,
+                    value: card.dataset.value,
+                    price: card.dataset.price
+                };
+                console.log(`Selected: Type: ${selectedOption.type}, Value: ${selectedOption.value}, Price: ৳ ${selectedOption.price}`);
+            });
+        });
+
+        document.getElementById('proceed-button').addEventListener('click', () => {
+            const playerId = document.getElementById('player-id').value;
+            const serverRegion = document.getElementById('server-region').value;
+
+            if (playerId.trim() === "" || serverRegion === "" || selectedOption === null) {
+                alert("অনুগ্রহ করে Player ID, সার্ভার রিজিওন এবং একটি CoD Points প্যাকেজ নির্বাচন করুন।");
+                return;
+            }
+
+            let message = `আপনার টপ-আপের তথ্য:\n`;
+            message += `Player ID: ${playerId}\n`;
+            message += `সার্ভার: ${serverRegion}\n`;
+            message += `আপনি নির্বাচন করেছেন: ${selectedOption.value} CoD Points\n`;
+            message += `মোট মূল্য: ৳ ${selectedOption.price}\n\n`;
+            message += `***এটি শুধুমাত্র একটি ডেমো। আসল টপ-আপের জন্য ব্যাক-এন্ড এবং পেমেন্ট গেটওয়ে ইন্টিগ্রেশন প্রয়োজন।***`;
+
+            alert(message);
+        });
+    </script>
+</body>
+</html>
