@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chibi Store – পেমেন্ট নির্বাচন</title>
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Noto+Sans+Bengali:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Background Animation */
+    body {
+      margin: 0;
+      font-family: 'Noto Sans Bengali', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(45deg, #f9e0e0, #f9ffe0, #e0fff6, #f0e0ff);
+      background-size: 600% 600%;
+      animation: bgMove 15s ease infinite;
+    }
+
+    @keyframes bgMove {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    /* Glassmorphism Card */
+    .payment-container {
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(16px);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 450px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      position: relative;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.95);}
+      to {opacity: 1; transform: scale(1);}
+    }
+
+    /* Store Logo */
+    .store-logo img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      animation: rotateLogo 10s linear infinite;
+    }
+
+    @keyframes rotateLogo {
+      0% {transform: rotate(0deg);}
+      100% {transform: rotate(360deg);}
+    }
+
+    .store-name {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 2em;
+      color: #ff4f4f;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .select-text {
+      font-weight: bold;
+      font-size: 1.3em;
+      margin-bottom: 20px;
+      color: #222;
+    }
+
+    /* Payment Options */
+    .payment-options-top,
+    .payment-options-bottom {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .payment-option-item {
+      background: white;
+      padding: 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 3px solid transparent;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    .payment-option-item:hover {
+      transform: translateY(-5px);
+      border-color: #ffc107;
+    }
+
+    .payment-option-item.selected {
+      border-color: #007bff;
+      box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
+    }
+
+    .payment-option-item img {
+      height: 50px;
+    }
+
+    .payment-option-item input {
+      display: none;
+    }
+
+    /* Order Summary */
+    .order-summary {
+      background: rgba(255,255,255,0.5);
+      border-radius: 10px;
+      padding: 15px;
+      font-size: 0.95em;
+      color: #333;
+      margin-bottom: 20px;
+      border-left: 4px solid #ffc107;
+    }
+
+    .total-amount {
+      font-weight: bold;
+      color: #d9534f;
+      margin-top: 10px;
+    }
+
+    /* Proceed Button */
+    .proceed-button {
+      background: linear-gradient(to right, #00b09b, #96c93d);
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 1.1em;
+      width: 100%;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .proceed-button:hover {
+      background: linear-gradient(to right, #96c93d, #00b09b);
+      transform: translateY(-2px);
+    }
+
+    .disclaimer {
+      font-size: 0.8em;
+      color: #666;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="payment-container">
+    <div class="store-logo">
+      <img src="https://i.ibb.co/L8B9b1Y/chibi-logo-placeholder.png" alt="Chibi Store Logo">
+    </div>
+    <div class="store-name">Chibi Store</div>
+    <div class="select-text">পেমেন্ট পদ্ধতি নির্বাচন করুন</div>
+
+    <div class="payment-options-top">
+      <label class="payment-option-item">
+        <input type="radio" name="payment_method" value="bkash">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Bkashlogo.svg/1200px-Bkashlogo.svg.png" alt="bKash">
+      </label>
+      <label class="payment-option-item">
+        <input type="radio" name="payment_method" value="nagad">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/NagadLogo.svg/1200px-NagadLogo.svg.png" alt="Nagad">
+      </label>
+    </div>
+
+    <div class="payment-options-bottom">
+      <label class="payment-option-item">
+        <input type="radio" name="payment_method" value="redotpay">
+        <img src="https://redotpay.com/favicon.png" alt="RedotPay">
+      </label>
+    </div>
+
+    <div class="order-summary">
+      <p>অর্ডার আইডি: <span id="order-id">#LOADING</span></p>
+      <p>পণ্যের বিবরণ: <span id="product-description">লোড হচ্ছে...</span></p>
+      <p class="total-amount">মোট: <span id="total-amount">৳0.00</span></p>
+    </div>
+
+    <button class="proceed-button" id="proceedToNextStep">পরবর্তী ধাপে যান</button>
+    <p class="disclaimer">নির্বাচিত অপশনে ক্লিক করে এগিয়ে যান।</p>
+  </div>
+
+  <script>
+    const radios = document.querySelectorAll('input[name="payment_method"]');
+    const items = document.querySelectorAll('.payment-option-item');
+    const orderIdEl = document.getElementById('order-id');
+    const productDescEl = document.getElementById('product-description');
+    const totalEl = document.getElementById('total-amount');
+
+    const params = new URLSearchParams(window.location.search);
+    const accountType = params.get('accountType');
+    const price = params.get('price');
+
+    if (accountType && price) {
+      const dummyId = 'CHIBI' + Math.floor(Math.random() * 1000000);
+      orderIdEl.textContent = `#${dummyId}`;
+      totalEl.textContent = `৳${parseFloat(price).toFixed(2)}`;
+      productDescEl.textContent = {
+        standard: 'Minecraft Standard Account',
+        premium: 'Minecraft Premium Account',
+        ultimate: 'Minecraft Ultimate Account'
+      }[accountType] || 'Minecraft Account';
+    }
+
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        items.forEach(i => i.classList.remove('selected'));
+        item.classList.add('selected');
+        item.querySelector('input').checked = true;
+      });
+    });
+
+    document.getElementById('proceedToNextStep').addEventListener('click', () => {
+      const selected = document.querySelector('input[name="payment_method"]:checked');
+      if (!selected) {
+        alert('একটি পেমেন্ট অপশন নির্বাচন করুন।');
+        return;
+      }
+
+      const method = selected.value;
+      let nextUrl = '';
+
+      if (method === 'bkash') {
+        nextUrl = `bkashpaymentpage.html?accountType=${accountType}&price=${price}`;
+      } else if (method === 'nagad') {
+        nextUrl = `nagadpaymentpage.html?accountType=${accountType}&price=${price}`;
+      } else if (method === 'redotpay') {
+        nextUrl = 'https://www.craigslist.com/'; // RedotPay লিংক দিলে এখানে বসাও
+      }
+
+      window.location.href = nextUrl;
+    });
+  </script>
+</body>
+</html>
