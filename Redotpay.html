@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedotPay ক্রিপ্টো পেমেন্ট ভেরিফিকেশন</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Share+Tech+Mono&family=Noto+Sans+Bengali:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Roboto', 'Noto Sans Bengali', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #0a0a0a, #1a1a1a); /* Dark, techy gradient */
+            color: #ecf0f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .container {
+            width: 90%;
+            max-width: 550px;
+            background-color: #222222; /* Darker container */
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 255, 0, 0.2); /* Green glow for crypto/tech vibe */
+            border: 1px solid #00ff00; /* Neon green border */
+            overflow: hidden;
+            position: relative;
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(0, 255, 0, 0.05) 0%, transparent 60%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Top Header (RedotPay style) */
+        .header {
+            background-color: #333333;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 1px solid #00ff00;
+        }
+        .header h1 {
+            color: #00ff00; /* Neon green */
+            margin: 0;
+            font-family: 'Share Tech Mono', monospace; /* Techy font */
+            font-size: 2.2em;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+        }
+        .header p {
+            color: #aaaaaa;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        /* Main Content - Payment Details */
+        .main-content {
+            padding: 30px 30px;
+        }
+        .main-content h2 {
+            text-align: center;
+            font-size: 1.6em;
+            margin-bottom: 25px;
+            color: #00ff00;
+            font-weight: 700;
+        }
+        .payment-info {
+            background-color: #111111;
+            border: 1px dashed #009900;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .payment-info p {
+            margin: 10px 0;
+            font-size: 1.1em;
+            color: #eeeeee;
+        }
+        .payment-info strong {
+            color: #00ff00;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.1em;
+        }
+        .copy-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .copy-group .wallet-address {
+            flex-grow: 1;
+            background-color: #0d0d0d;
+            border: 1px solid #006600;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.95em;
+            color: #b0e062; /* Lighter green for address */
+            overflow-wrap: break-word; /* For long addresses */
+            word-break: break-all;
+        }
+        .copy-btn {
+            background-color: #0088cc; /* Blue copy button */
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-shrink: 0;
+        }
+        .copy-btn:hover {
+            background-color: #006699;
+        }
+        .copy-btn img {
+            height: 16px;
+            filter: invert(1);
+        }
+        .copy-btn.copied {
+            background-color: #28a745;
+        }
+
+        /* Instructions List */
+        .instructions {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+            color: #cccccc;
+        }
+        .instructions li {
+            position: relative;
+            margin-bottom: 15px;
+            padding-left: 25px;
+            font-size: 1em;
+            line-height: 1.4;
+        }
+        .instructions li::before {
+            content: '>'; /* Arrow bullet point */
+            position: absolute;
+            left: 0;
+            color: #00ff00;
+            font-weight: bold;
+            font-size: 1.2em;
+            top: 0;
+        }
+        .instructions li strong {
+            color: #00ff00;
+        }
+
+        /* Input for Transaction Hash */
+        .transaction-hash-group {
+            margin-bottom: 30px;
+        }
+        .transaction-hash-input {
+            width: calc(100% - 30px);
+            padding: 15px;
+            border: 1px solid #006600;
+            border-radius: 8px;
+            background-color: #0d0d0d;
+            color: #00ff00;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1em;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .transaction-hash-input::placeholder {
+            color: rgba(0, 255, 0, 0.5);
+        }
+        .transaction-hash-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #00ff00;
+        }
+
+        /* Verify Button */
+        .verify-button-section {
+            padding: 25px 30px;
+            text-align: center;
+            background-color: #111111;
+            border-top: 1px solid #00ff00;
+        }
+        .verify-button {
+            background: linear-gradient(to right, #00ff00, #00aa00);
+            color: #111;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.4em;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4);
+            text-transform: uppercase;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .verify-button:hover {
+            background: linear-gradient(to right, #00aa00, #00ff00);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 255, 0, 0.6);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 480px) {
+            .container {
+                width: 100%;
+                margin: 0;
+                border-radius: 0;
+                box-shadow: none;
+                border: none;
+            }
+            .container::before {
+                display: none;
+            }
+            .main-content {
+                padding: 25px 20px;
+            }
+            .header h1 {
+                font-size: 1.8em;
+            }
+            .main-content h2 {
+                font-size: 1.4em;
+                margin-bottom: 20px;
+            }
+            .payment-info p, .instructions li {
+                font-size: 0.95em;
+            }
+            .copy-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .copy-group .wallet-address {
+                width: 100%;
+                padding: 8px 10px;
+                font-size: 0.85em;
+            }
+            .copy-btn {
+                width: 100%;
+                padding: 8px 15px;
+                font-size: 0.85em;
+                justify-content: center;
+            }
+            .transaction-hash-input {
+                padding: 12px;
+                font-size: 0.9em;
+            }
+            .verify-button-section {
+                padding: 20px;
+            }
+            .verify-button {
+                padding: 12px 25px;
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>RedotPay Payment</h1>
+            <p>ক্রিপ্টোকারেন্সি দিয়ে পেমেন্ট করুন</p>
+        </div>
+
+        <div class="main-content">
+            <h2>আপনার পেমেন্ট সম্পন্ন করুন</h2>
+
+            <div class="payment-info">
+                <p>পরিমাণ: <strong>0.00075 BTC</strong> (~৳ 24)</p>
+                <p>ওয়ালেট অ্যাড্রেস:</p>
+                <div class="copy-group">
+                    <div class="wallet-address" id="walletAddress">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wma</div>
+                    <button class="copy-btn" id="copyAddressBtn">
+                        <img src="https://www.svgrepo.com/show/503020/copy.svg" alt="Copy Icon"> কপি করুন
+                    </button>
+                </div>
+            </div>
+
+            <ul class="instructions">
+                <li>আপনার ক্রিপ্টো ওয়ালেট (যেমন Binance, Trust Wallet, MetaMask) খুলুন।</li>
+                <li>Bitcoin (BTC) সিলেক্ট করুন এবং <strong>Send/Withdraw</strong> অপশনে যান।</li>
+                <li>উপরের **ওয়ালেট অ্যাড্রেসটি** নির্ভুলভাবে কপি করে প্রাপকের অ্যাড্রেস ফিল্ডে পেস্ট করুন।</li>
+                <li>পরিমাণ হিসেবে <strong>0.00075 BTC</strong> উল্লেখ করুন।</li>
+                <li>পেমেন্ট নিশ্চিত করার পর, আপনি একটি **Transaction Hash (TxID)** পাবেন।</li>
+                <li>
+                    এখন নিচের বক্সে আপনার **Transaction Hash (TxID)** দিন এবং VERIFY বাটনে ক্লিক করুন।
+                    <br><small style="color: #999;">(ট্রানজেকশন সম্পূর্ণ হতে কিছুটা সময় লাগতে পারে)</small>
+                </li>
+            </ul>
+
+            <div class="transaction-hash-group">
+                <input type="text" id="transactionHashInput" class="transaction-hash-input" placeholder="আপনার ট্রানজেকশন হ্যাশ (TxID) দিন" required>
+            </div>
+        </div>
+
+        <div class="verify-button-section">
+            <button class="verify-button" id="verifyBtn">পেমেন্ট ভেরিফাই করুন</button>
+        </div>
+    </div>
+
+    <script>
+        const copyAddressBtn = document.getElementById('copyAddressBtn');
+        const walletAddressElement = document.getElementById('walletAddress');
+        const transactionHashInput = document.getElementById('transactionHashInput');
+        const verifyBtn = document.getElementById('verifyBtn');
+        const btcAddress = "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wma"; // Example BTC address
+
+        // Function to copy text to clipboard
+        function copyTextToClipboard(text, buttonElement) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = buttonElement.innerHTML;
+                buttonElement.innerHTML = '<img src="https://www.svgrepo.com/show/503020/copy.svg" alt="Check Icon"> কপিড!';
+                buttonElement.classList.add('copied');
+                setTimeout(() => {
+                    buttonElement.innerHTML = originalText;
+                    buttonElement.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+                alert('কপি করতে ব্যর্থ হয়েছেন। ম্যানুয়ালি কপি করুন।');
+            });
+        }
+
+        // Event listener for copy address button
+        copyAddressBtn.addEventListener('click', () => {
+            copyTextToClipboard(btcAddress, copyAddressBtn);
+        });
+
+        // Event listener for verify button
+        verifyBtn.addEventListener('click', () => {
+            const transactionHash = transactionHashInput.value.trim();
+            if (transactionHash === "") {
+                alert("অনুগ্রহ করে আপনার ট্রানজেকশন হ্যাশ (TxID) দিন।");
+            } else {
+                alert(`আপনার দেওয়া ট্রানজেকশন হ্যাশ: ${transactionHash}\n\n(এটি একটি ডেমো ভেরিফিকেশন। আসল ভেরিফিকেশন ব্লকচেইন নেটওয়ার্কে হবে।)`);
+                // এখানে তুমি তোমার সার্ভার-এ ট্রানজেকশন হ্যাশ পাঠানোর লজিক যুক্ত করবে।
+                // সার্ভার-এ এই হ্যাশ ব্যবহার করে ব্লকচেইন এক্সপ্লোরার API (যেমন Blockchain.com API)
+                // অথবা RedotPay-এর নিজস্ব API (যদি থাকে এবং অ্যাক্সেস থাকে) দিয়ে পেমেন্ট ভেরিফাই করা হবে।
+            }
+        });
+    </script>
+</body>
+</html>
