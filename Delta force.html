@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💥 Delta Force টপ-আপ | ক্রেডিট ও প্যাকেজ 💥</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        /* Basic Reset & Fonts */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #1a2a6c, #b21f1f, #fdbb2d); /* Dark Blue, Red, Gold - military/action theme */
+            color: #ecf0f1; /* Light text color */
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Full viewport height */
+        }
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: rgba(0, 0, 0, 0.7); /* Darker, slightly transparent background */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 2px solid #fdbb2d; /* Gold border */
+            position: relative;
+            z-index: 1;
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px dashed rgba(253, 187, 45, 0.5); /* Dashed gold border effect */
+            border-radius: 15px;
+            z-index: -1;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fdbb2d; /* Gold */
+            margin-bottom: 40px;
+            font-family: 'Press Start 2P', cursive; /* Retro game font */
+            font-size: 2.2em;
+            text-shadow: 0 0 10px rgba(253, 187, 45, 0.7);
+            line-height: 1.2;
+        }
+        h2 {
+            color: #e0e0e0;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        /* Input Styles */
+        .input-group {
+            margin-bottom: 25px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #ccc;
+            font-size: 1.1em;
+        }
+        .input-group input[type="text"],
+        .input-group select {
+            width: calc(100% - 24px); /* Adjusted for padding */
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .input-group input[type="text"]::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .input-group input[type="text"]:focus,
+        .input-group select:focus {
+            border-color: #fdbb2d;
+            box-shadow: 0 0 10px rgba(253, 187, 45, 0.5);
+            outline: none;
+        }
+
+        /* Options Grid */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .option-card {
+            background-color: rgba(50, 50, 50, 0.7); /* Darker card background */
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .option-card:hover {
+            border-color: #fdbb2d; /* Gold border on hover */
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+        .option-card.selected {
+            border-color: #b21f1f; /* Red border when selected */
+            background-color: rgba(70, 0, 0, 0.8); /* Darker red when selected */
+            box-shadow: 0 0 20px rgba(178, 31, 31, 0.7);
+            transform: scale(1.03);
+        }
+        .option-card h3 {
+            margin-top: 0;
+            color: #fdbb2d; /* Gold for titles */
+            font-size: 1.6em;
+            margin-bottom: 10px;
+            font-family: 'Press Start 2P', cursive;
+        }
+        .option-card p {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #ecf0f1;
+        }
+        .option-card .price {
+            font-size: 2em;
+            color: #4CAF50; /* Green for price */
+            margin-top: 15px;
+            font-weight: 700;
+        }
+        .option-card .details {
+            font-size: 0.9em;
+            color: #bdc3c7;
+            margin-top: 10px;
+        }
+
+        /* Action Button */
+        .action-button {
+            background: linear-gradient(to right, #b21f1f 0%, #7f0000 100%); /* Red gradient */
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.5em;
+            font-weight: 700;
+            width: 100%;
+            margin-top: 40px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(178, 31, 31, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .action-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(178, 31, 31, 0.6);
+            background: linear-gradient(to right, #7f0000 0%, #b21f1f 100%);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: rgba(236, 240, 241, 0.7);
+            border-radius: 0 0 12px 12px;
+            font-size: 0.85em;
+            border-top: 1px solid rgba(253, 187, 45, 0.3);
+        }
+
+        /* --- Media Queries for Responsiveness --- */
+        @media (max-width: 768px) { /* For tablets and smaller screens */
+            .container {
+                margin: 15px auto;
+                padding: 25px;
+            }
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 30px;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            .input-group input[type="text"],
+            .input-group select {
+                width: calc(100% - 20px);
+            }
+            .options-grid {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 15px;
+            }
+            .option-card h3 {
+                font-size: 1.4em;
+            }
+            .option-card .price {
+                font-size: 1.8em;
+            }
+            .action-button {
+                font-size: 1.3em;
+                padding: 12px 25px;
+            }
+        }
+
+        @media (max-width: 480px) { /* For mobile phones */
+            body {
+                padding: 10px;
+            }
+            .container {
+                width: 100%;
+                margin: 10px 0;
+                padding: 15px;
+                border-radius: 8px;
+            }
+            .container::before {
+                display: none; /* Hide dashed border on very small screens */
+            }
+            h1 {
+                font-size: 1.5em;
+                margin-bottom: 25px;
+            }
+            h2 {
+                font-size: 1.3em;
+            }
+            .input-group input[type="text"],
+            .input-group select {
+                width: calc(100% - 16px);
+                padding: 10px;
+                font-size: 0.9em;
+            }
+            .options-grid {
+                grid-template-columns: 1fr; /* Single column layout for cards */
+                gap: 10px;
+            }
+            .option-card {
+                padding: 15px;
+            }
+            .option-card h3 {
+                font-size: 1.3em;
+            }
+            .option-card .price {
+                font-size: 1.6em;
+            }
+            .action-button {
+                font-size: 1.1em;
+                padding: 10px 20px;
+            }
+            footer {
+                padding: 10px;
+                font-size: 0.75em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <span style="color: #b21f1f;">DELTA</span> <span style="color: #fdbb2d;">FORCE</span> <br>
+            <span style="font-size: 0.6em; display: block; margin-top: 10px; font-family: 'Roboto', sans-serif;">ক্রেডিট টপ-আপ জোন</span>
+        </h1>
+
+        <div class="input-group">
+            <label for="player-id">আপনার Delta Force Player ID/User Name:</label>
+            <input type="text" id="player-id" placeholder="এখানে আপনার Player ID বা User Name লিখুন" required>
+        </div>
+
+        <div class="input-group">
+            <label for="server-region">সার্ভার রিজিওন নির্বাচন করুন:</label>
+            <select id="server-region">
+                <option value="">নির্বাচন করুন</option>
+                <option value="global">গ্লোবাল</option>
+                <option value="asia">এশিয়া</option>
+                <option value="eu">ইউরোপ</option>
+                <option value="na">উত্তর আমেরিকা</option>
+                <option value="other">অন্যান্য</option>
+            </select>
+        </div>
+
+        <h2>আপনার ক্রেডিট প্যাকেজ নির্বাচন করুন:</h2>
+        <div class="options-grid">
+            <div class="option-card" data-type="credits" data-value="1000" data-price="100">
+                <h3>1000 Credits</h3>
+                <p class="price">৳ 100</p>
+                <p class="details">বেসিক টপ-আপ</p>
+            </div>
+            <div class="option-card" data-type="credits" data-value="3000" data-price="280">
+                <h3>3000 Credits</h3>
+                <p class="price">৳ 280</p>
+                <p class="details">বেশি কিনুন, কম খরচ করুন!</p>
+            </div>
+            <div class="option-card" data-type="credits" data-value="5500" data-price="490">
+                <h3>5500 Credits</h3>
+                <p class="price">৳ 490</p>
+                <p class="details">জনপ্রিয় প্যাকেজ</p>
+            </div>
+            <div class="option-card" data-type="credits" data-value="12000" data-price="1000">
+                <h3>12000 Credits</h3>
+                <p class="price">৳ 1000</p>
+                <p class="details">সেরা ডিল!</p>
+            </div>
+            <div class="option-card" data-type="credits" data-value="25000" data-price="2000">
+                <h3>25000 Credits</h3>
+                <p class="price">৳ 2000</p>
+                <p class="details">ভিআইপি প্যাকেজ</p>
+            </div>
+            <div class="option-card" data-type="credits" data-value="50000" data-price="3800">
+                <h3>50000 Credits</h3>
+                <p class="price">৳ 3800</p>
+                <p class="details">আলটিমেট প্যাকেজ</p>
+            </div>
+        </div>
+
+        <button class="action-button" id="proceed-button">এখনই ক্রেডিট টপ-আপ করুন!</button>
+
+        <footer>
+            <p>&copy; 2025 Delta Force টপ-আপ জোন। আপনার মিশন সফল হোক!</p>
+            <p>দ্রষ্টব্য: এটি শুধুমাত্র একটি ডিজাইন ডেমো। প্রকৃত কার্যকারিতার জন্য ব্যাক-এন্ড ডেভেলপমেন্ট ও পেমেন্ট গেটওয়ে ইন্টিগ্রেশন প্রয়োজন।</p>
+        </footer>
+    </div>
+
+    <script>
+        const optionCards = document.querySelectorAll('.option-card');
+        let selectedOption = null; // To store the currently selected option card
+
+        // Option card selection functionality
+        optionCards.forEach(card => {
+            card.addEventListener('click', () => {
+                // Remove 'selected' class from all cards
+                optionCards.forEach(c => c.classList.remove('selected'));
+
+                // Add 'selected' class to the clicked card
+                card.classList.add('selected');
+                selectedOption = {
+                    type: card.dataset.type,
+                    value: card.dataset.value,
+                    price: card.dataset.price
+                };
+                console.log(`Selected: Type: ${selectedOption.type}, Value: ${selectedOption.value}, Price: ৳ ${selectedOption.price}`);
+            });
+        });
+
+        // Proceed button logic
+        document.getElementById('proceed-button').addEventListener('click', () => {
+            const playerId = document.getElementById('player-id').value;
+            const serverRegion = document.getElementById('server-region').value;
+
+            if (playerId.trim() === "" || serverRegion === "" || selectedOption === null) {
+                alert("অনুগ্রহ করে Player ID/User Name, সার্ভার রিজিওন এবং একটি ক্রেডিট প্যাকেজ নির্বাচন করুন।");
+                return;
+            }
+
+            let message = `আপনার টপ-আপের তথ্য:\n`;
+            message += `Player ID/User Name: ${playerId}\n`;
+            message += `সার্ভার: ${serverRegion}\n`;
+
+            message += `আপনি নির্বাচন করেছেন: ${selectedOption.value} Delta Force Credits\n`;
+            message += `মোট মূল্য: ৳ ${selectedOption.price}\n\n`;
+            message += `***এটি শুধুমাত্র একটি ডেমো। আসল টপ-আপের জন্য ব্যাক-এন্ড এবং পেমেন্ট গেটওয়ে ইন্টিগ্রেশন প্রয়োজন।***`;
+
+            alert(message);
+            // এখানে তুমি পেমেন্ট গেটওয়ে ইন্টিগ্রেশনের লজিক যুক্ত করতে পারো।
+        });
+    </script>
+</body>
+</html>
